@@ -3,6 +3,7 @@ import { Title, Paragrafo } from './styled';
 import { Container } from '../../styles/GlobalStyles';
 import { useDispatch } from 'react-redux';
 // import axios from '../../services/axios';
+import * as exampleActions from '../../store/modules/example/actions';
 
 export default function Login() {
     const dispatch = useDispatch(); // disparador
@@ -18,10 +19,11 @@ export default function Login() {
     function handleClick(e) {
         e.preventDefault();
 
-        dispatch({
-            type: 'BOTAO_CLICADO',
-            // payload: { email, senha },
-        });
+        // dispatch({
+        //     type: 'BOTAO_CLICADO',
+        //     // payload: { email, senha },
+        // });
+        dispatch(exampleActions.clicaBotaoRequest());
     }
 
     return (

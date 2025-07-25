@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 // instalar o react-icons: npm i react-icons
 export default function Header() {
     const botaoClicado = useSelector(
-        (state) => state.botaoClicado,
+        (state) => state.example.botaoClicado,
     );
 
     return (
