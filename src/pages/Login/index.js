@@ -1,12 +1,12 @@
 import React from 'react';
-import { Title, Paragrafo } from './styled';
+// import { Title, Paragrafo } from './styled';
 import { Container } from '../../styles/GlobalStyles';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 // import axios from '../../services/axios';
-import * as exampleActions from '../../store/modules/example/actions';
+// import * as exampleActions from '../../store/modules/example/actions';
 
 export default function Login() {
-    const dispatch = useDispatch(); // disparador
+    // const dispatch = useDispatch(); // disparador
     // useEffect(() => {
     //     async function getData() {
     //         const response = await axios.get('/alunos');
@@ -16,28 +16,22 @@ export default function Login() {
 
     //     getData();
     // }, []);
-    function handleClick(e) {
-        e.preventDefault();
+    // function handleClick(e) {
+    //     e.preventDefault();
 
-        // dispatch({
-        //     type: 'BOTAO_CLICADO',
-        //     // payload: { email, senha },
-        // });
-        dispatch(exampleActions.clicaBotaoRequest());
-    }
+    //     // dispatch({
+    //     //     type: 'BOTAO_CLICADO',
+    //     //     // payload: { email, senha },
+    //     // });
+    //     dispatch(exampleActions.clicaBotaoRequest());
+    // }
 
     return (
         <Container>
-            <Title isRed={true}>
-                Login
-                <small>Oie</small>
-            </Title>
-            <Paragrafo>
-                Lorem ipsum dolor sit amet.
-            </Paragrafo>
-            <button type="button" onClick={handleClick}>
+            <h1>Login</h1>
+            {/* <button type="button" onClick={handleClick}>
                 Enviar
-            </button>
+            </button> */}
         </Container>
     );
 }
