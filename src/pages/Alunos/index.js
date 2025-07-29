@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { Container } from '../../styles/GlobalStyles';
 import axios from '../../services/axios';
-import { AlunoContainer } from './styled';
+import {
+    AlunoContainer,
+    ProfilePicture,
+    NovoAluno,
+} from './styled';
 // npm i lodash
 import { get } from 'lodash';
 import {
@@ -11,7 +15,6 @@ import {
     FaWindowClose,
     FaExclamation,
 } from 'react-icons/fa';
-import { ProfilePicture } from './styled';
 import Loading from '../../components/Loading';
 import { toast } from 'react-toastify';
 
@@ -66,6 +69,8 @@ export default function Alunos() {
             <Loading isLoading={isLoading} />
 
             <h1>Alunos</h1>
+
+            <NovoAluno to="/aluno/">Novo aluno</NovoAluno>
 
             <AlunoContainer>
                 {alunos.map((aluno, index) => (
