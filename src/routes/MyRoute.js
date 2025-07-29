@@ -1,6 +1,7 @@
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 // npm i prop-types
 export default function MyRoute({
@@ -8,7 +9,9 @@ export default function MyRoute({
     isClosed,
     ...rest
 }) {
-    const isLoggedId = false;
+    const isLoggedId = useSelector(
+        (state) => state.auth.isLoggedIn,
+    );
 
     if (isClosed && !isLoggedId) {
         return (

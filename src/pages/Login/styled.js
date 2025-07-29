@@ -1,15 +1,18 @@
 import styled from 'styled-components';
 
-// export const Title = styled.h1`
-//     /* color: ${(props) =>
-//         props.isRed ? 'red' : 'blue'}; */
-//     background: green;
+export const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
 
-//     small {
-//         font-size: 12pt;
-//         margin-left: 15px;
-//         color: #999;
-//     }
-// `;
-
-export const Paragrafo = styled.p``;
+    input {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        height: 40px;
+        font-size: 18px;
+        border: 1px solid #ddd;
+        padding: 0 10px;
+        border-radius: 4px;
+    }
+`;

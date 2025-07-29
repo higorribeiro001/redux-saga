@@ -4,15 +4,26 @@ import {
     FaHome,
     FaSignInAlt,
     FaUserAlt,
+    FaCircle,
+    FaPowerOff,
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-// import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import * as actions from '../../store/modules/auth/actions';
+import history from '../../services/history';
 
 // instalar o react-icons: npm i react-icons
 export default function Header() {
-    // const botaoClicado = useSelector(
-    //     (state) => state.example.botaoClicado,
-    // );
+    const dispatch = useDispatch();
+    const isLoggedIn = useSelector(
+        (state) => state.auth.isLoggedIn,
+    );
+
+    const handleLogout = (e) => {
+        e.preventDefault();
+        dispatch(actions.loginFailure());
+        history.push('/');
+    };
 
     return (
         <Nav>
@@ -20,11 +31,20 @@ export default function Header() {
                 <FaHome size={24} />
             </Link>
             <Link to="/register">
-                <FaUserAlt />
+                <FaUserAlt size={24} />
             </Link>
-            <Link to="/login">
-                <FaSignInAlt />
-            </Link>
+            {isLoggedIn ? (
+                <Link onClick={handleLogout} to="/logout">
+                    <FaPowerOff size={24} />
+                </Link>
+            ) : (
+                <Link to="/login">
+                    <FaSignInAlt size={24} />
+                </Link>
+            )}
+            {isLoggedIn && (
+                <FaCircle size={24} color="green" />
+            )}
         </Nav>
     );
 }

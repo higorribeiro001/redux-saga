@@ -1,37 +1,82 @@
-import React from 'react';
-// import { Title, Paragrafo } from './styled';
+import React, { useState } from 'react';
 import { Container } from '../../styles/GlobalStyles';
-// import { useDispatch } from 'react-redux';
-// import axios from '../../services/axios';
-// import * as exampleActions from '../../store/modules/example/actions';
+import { Form } from './styled';
+import { toast } from 'react-toastify';
+import isEmail from 'validator/lib/isEmail';
+import { useDispatch, useSelector } from 'react-redux';
+import { get } from 'lodash';
+import * as actions from '../../store/modules/auth/actions';
+import Loading from '../../components/Loading';
 
-export default function Login() {
-    // const dispatch = useDispatch(); // disparador
-    // useEffect(() => {
-    //     async function getData() {
-    //         const response = await axios.get('/alunos');
-    //         const { data } = response;
-    //         console.log(data);
-    //     }
+export default function Login(props) {
+    const dispatch = useDispatch();
 
-    //     getData();
-    // }, []);
-    // function handleClick(e) {
-    //     e.preventDefault();
+    const prevPath = get(
+        props,
+        'location.state.prevPath',
+        '/',
+    );
 
-    //     // dispatch({
-    //     //     type: 'BOTAO_CLICADO',
-    //     //     // payload: { email, senha },
-    //     // });
-    //     dispatch(exampleActions.clicaBotaoRequest());
-    // }
+    const isLoading = useSelector(
+        (state) => state.auth.isLoading,
+    );
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        let formErrors = false;
+
+        if (!isEmail(email)) {
+            formErrors = true;
+            toast.error('E-mail inválido.');
+        }
+
+        if (password.length < 6 || password.length > 50) {
+            formErrors = true;
+            toast.error(
+                'Senha deve ter entre 6 e 50 caracteres',
+            );
+        }
+
+        if (formErrors) return;
+
+        dispatch(
+            actions.loginRequest({
+                email,
+                password,
+                prevPath,
+            }),
+        );
+    };
 
     return (
         <Container>
+            <Loading isLoading={isLoading} />
+
             <h1>Login</h1>
-            {/* <button type="button" onClick={handleClick}>
-                Enviar
-            </button> */}
+
+            <Form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    value={email}
+                    onChange={(e) =>
+                        setEmail(e.target.value)
+                    }
+                    placeholder="Seu e-mail"
+                />
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e) =>
+                        setPassword(e.target.value)
+                    }
+                    placeholder="Sua senha"
+                />
+                <button type="submit">Acessar</button>
+            </Form>
         </Container>
     );
 }

@@ -7,11 +7,8 @@ import Alunos from '../pages/Alunos';
 import Fotos from '../pages/Fotos';
 import Register from '../pages/Register';
 import Page404 from '../pages/Page404';
-import { toast } from 'react-toastify';
 
 export default function Routes() {
-    toast.success('Oie');
-
     return (
         <Switch>
             <MyRoute
